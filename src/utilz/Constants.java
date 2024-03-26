@@ -25,6 +25,7 @@ public class Constants {
 			switch(playerAction) {
 			case IDLE:
 			case RUNNING:
+			case ATTACK_1:
 				return 8;
 			case JUMPING:
 				return 2;

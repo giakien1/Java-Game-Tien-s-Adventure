@@ -30,6 +30,7 @@ public class KeyboardInput implements KeyListener{
 		case KeyEvent.VK_D:
 			gamePanel.getGame().getPlayer().setRight(false);
 			break;
+			//J de danh
 //		case KeyEvent.VK_J:
 //			gamePanel.
 		}
