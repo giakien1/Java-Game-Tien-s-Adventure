@@ -14,21 +14,18 @@ public class Constants {
 		public static final int RUNNING = 1;
 		public static final int JUMPING = 2;
 		public static final int FALLING = 3;
-		public static final int RUN_FALL = 4;
-		public static final int ATTACK_1 = 5;
-		public static final int CROUCHING = 6;
-		public static final int ATTACK_2= 7;
-		public static final int ATTACK_3 = 8;
+		public static final int ATTACK_1 = 4;
 
 		
 		public static int getSpriteAmount(int playerAction) {
 			switch(playerAction) {
 			case IDLE:
+				return 5;
 			case RUNNING:
+				return 6;
 			case ATTACK_1:
-				return 8;
 			case JUMPING:
-				return 2;
+				return 3;
 			default:
 				return 1;
 						

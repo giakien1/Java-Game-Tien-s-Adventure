@@ -3,6 +3,7 @@ package main;
 import java.awt.Graphics;
 
 import entities.Player;
+import levels.LevelManager;
 
 public class Game implements Runnable{
 	private GameWindow gameWindow;
@@ -12,6 +13,16 @@ public class Game implements Runnable{
 	private final int UPS_SET = 200;
 	
 	private Player player;
+	private LevelManager levelManager;
+	
+	// Set 1 o tile la 32 pixel
+	public final static int TILES_DEFAULT_SIZE = 32;
+	public final static float SCALE = 1.0f;
+	public final static int TILES_IN_WIDTH = 26;
+	public final static int TILES_IN_HEIGHT = 14;
+	public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
+	public final static int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH;
+	public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
 	
 	public Game() {
 		initClasses();
@@ -25,7 +36,10 @@ public class Game implements Runnable{
 	}
 	
 	private void initClasses() {
-		player = new Player(200, 200);
+		levelManager = new LevelManager(this);
+		//Kich thuoc nhan vat
+		player = new Player(200, 200,(int) (64*SCALE),(int) (40*SCALE));
+		player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
 	}
 
 	private void startGameLoop() {
@@ -35,16 +49,18 @@ public class Game implements Runnable{
 	
 	public void update() {
 		player.update();	
+		levelManager.update();
 	}
 	
 	public void render(Graphics g) {
+		levelManager.draw(g);
 		player.render(g);
 	}
 	
 	
 	@Override
 	public void run() {
-		
+		//FPS va UPS
 		double timePerFrame = 1000000000.0/FPS_SET;
 		double timePerUpdate = 1000000000.0/UPS_SET;
 		
