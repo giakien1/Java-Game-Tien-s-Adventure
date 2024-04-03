@@ -14,7 +14,7 @@ public class Constants {
 		public static final int RUNNING = 1;
 		public static final int JUMPING = 2;
 		public static final int FALLING = 3;
-		public static final int ATTACK_1 = 4;
+		public static final int ATTACK_1 = 7;
 
 		
 		public static int getSpriteAmount(int playerAction) {
