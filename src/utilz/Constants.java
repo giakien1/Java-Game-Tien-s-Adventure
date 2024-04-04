@@ -27,8 +27,7 @@ public class Constants {
 			case JUMPING:
 				return 3;
 			default:
-				return 1;
-						
+				return 1;			
 			}
 		}
 	}
