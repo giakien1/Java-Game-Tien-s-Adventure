@@ -15,8 +15,8 @@ public class Player extends Entity{
 	private int playerAction = IDLE;
 	private boolean moving = false, attacking = false;
 	// khai bao them bien jump de nhay
-	private boolean left, up, right, down, jump;
-	private float playerSpeed = 2.0f;
+	private boolean left, up, right, jump;
+	private float playerSpeed = 1.0f * Game.SCALE;
 	private int[][] lvlData;
 	
 	
@@ -25,7 +25,7 @@ public class Player extends Entity{
 	
 	// Xử lý Jumping, Gravity
 	private float airSpeed = 0f;
-	// Tốc độ di chuyển trong không khí ( Đại khái là tốc độ rơi đó)
+	// Tốc độ di chuyển trong không khí (Tốc độ rơi)
 	private float gravity = 0.04f * Game.SCALE;
 	// Trọng lực là một hằng số bất kì.
 	private float jumpSpeed = -2.25f * Game.SCALE;
@@ -40,7 +40,7 @@ public class Player extends Entity{
 	public Player(float x, float y, int width, int height) {
 		super(x, y, width, height);
 		loadAnimations();
-		initHitbox(x, y, 20 * Game.SCALE, 28 * Game.SCALE);
+		initHitbox(x, y,(int) (20 * Game.SCALE),(int) (27 * Game.SCALE));
 		
 	}
 	public void update() {
@@ -51,7 +51,7 @@ public class Player extends Entity{
 	
 	public void render(Graphics g) {
 		g.drawImage(animations[playerAction][aniIndex],(int) (hitbox.x - xDrawOffset),(int) (hitbox.y - yDrawOffset), width, height, null);
-		drawHitbox(g);
+//		drawHitbox(g);
 	}
 	
 	private void updateAnimationTick() {
@@ -102,10 +102,12 @@ public class Player extends Entity{
 		
 		float xSpeed = 0;
 			
-		if(left)
+		if(left) {
 			xSpeed -= playerSpeed;
-		if(right)
+		}
+		if(right) {
 			xSpeed += playerSpeed;
+		}
 		// Kiem tra khong phai tren san
 		if(!inAir){
 			if(!IsEntityOnFloor(hitbox,lvlData)) {
@@ -123,27 +125,28 @@ public class Player extends Entity{
 				if(airSpeed > 0)
 					resetInAir();
 				else {
-					airSpeed = fallSpeedAfterCollision;
-					updateXPos(xSpeed);
+						airSpeed = fallSpeedAfterCollision;
+				updateXPos(xSpeed);
 				}
 			}
 		}else {
 			updateXPos(xSpeed);	
+		moving = true;
 		}
 	}
 		
 	private void jump() {
-		// TODO Auto-generated method stub
 		if(inAir)
 			return;
 		inAir = true;
 		airSpeed = jumpSpeed;
 	}
+	
 	private void resetInAir() {
-		// TODO Auto-generated method stub
 		inAir = false;
 		airSpeed = 0;
 	}
+	
 	private void updateXPos(float xSpeed) {
 	if(CanMoveHere( hitbox.x + xSpeed, hitbox.y , hitbox.width, hitbox.height, lvlData)){
 		hitbox.x += xSpeed;
@@ -151,23 +154,6 @@ public class Player extends Entity{
 		hitbox.x = GetEntityXPosNextToWall(hitbox, xSpeed);
 	}
 }
-//		if(up && !down) {
-//			ySpeed = -playerSpeed;
-//		}else if(down && !up) {
-//			ySpeed = playerSpeed;
-//		}
-//		if(CanMoveHere(x+xSpeed, y+ySpeed, width, height, lvlData)){
-//			this.x += xSpeed;
-//			this.y += ySpeed;
-//			moving = true;
-//		}
-		
-//		if(CanMoveHere( hitbox.x + xSpeed, hitbox.y + ySpeed, hitbox.width, hitbox.height, lvlData)){
-//			hitbox.x += xSpeed;
-//			hitbox.y += ySpeed;
-//			moving = true;
-//		}
-//	}
 	
 	private void loadAnimations() {
 		
@@ -183,13 +169,15 @@ public class Player extends Entity{
 	
 	public void loadLvlData(int[][] lvlData) {
 		this.lvlData = lvlData;
+		if(!IsEntityOnFloor(hitbox, lvlData))
+			inAir = true;
 	}
 	
 	public void resetDirBooleans() {
 		left = false;
 		right = false;
 		up = false;
-		down = false;
+//		down = false;
 	}
 	
 	public void setAttacking(boolean attacking) {
@@ -214,12 +202,12 @@ public class Player extends Entity{
 	public void setRight(boolean right) {
 		this.right = right;
 	}
-	public boolean isDown() {
-		return down;
-	}
-	public void setDown(boolean down) {
-		this.down = down;
-	}
+//	public boolean isDown() {
+//		return down;
+//	}
+//	public void setDown(boolean down) {
+//		this.down = down;
+//	}
 	public void setJump(boolean jump) {
 		this.jump = jump;
 	}
