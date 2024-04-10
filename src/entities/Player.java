@@ -49,8 +49,8 @@ public class Player extends Entity{
 		setAnimation();
 	}
 	
-	public void render(Graphics g) {
-		g.drawImage(animations[playerAction][aniIndex],(int) (hitbox.x - xDrawOffset),(int) (hitbox.y - yDrawOffset), width, height, null);
+	public void render(Graphics g, int lvlOffset) {
+		g.drawImage(animations[playerAction][aniIndex],(int) (hitbox.x - xDrawOffset) - lvlOffset,(int) (hitbox.y - yDrawOffset), width, height, null);
 //		drawHitbox(g);
 	}
 	
@@ -97,6 +97,11 @@ public class Player extends Entity{
 		moving = false;
 		if(jump)
 			jump();
+		
+		if(!inAir)
+			if((!left && !right) || (right && left))
+				return;
+		
 		if(!left && !right && !inAir)
 			return;
 		
@@ -105,9 +110,11 @@ public class Player extends Entity{
 		if(left) {
 			xSpeed -= playerSpeed;
 		}
+		
 		if(right) {
 			xSpeed += playerSpeed;
 		}
+		
 		// Kiem tra khong phai tren san
 		if(!inAir){
 			if(!IsEntityOnFloor(hitbox,lvlData)) {

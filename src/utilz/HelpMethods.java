@@ -16,7 +16,8 @@ public class HelpMethods {
 	
 	//Kiem tra co vat the:
 	private static boolean IsSolid(float x, float y, int[][] lvlData) {
-		if(x < 0 || x >= Game.GAME_WIDTH)
+		int maxWidth = lvlData[0].length * Game.TILES_SIZE;
+		if(x < 0 || x >= maxWidth)
 			return true;
 		if(y < 0 || y >= Game.GAME_HEIGHT)
 			return true;
@@ -26,8 +27,6 @@ public class HelpMethods {
 		
 		int value = lvlData[(int)yIndex][(int)xIndex];
 		
-		// 48 = so luong sprites
-		//11 la sprite chuyen man
 		if(value >= 48 || value < 0 || value != 11)
 			return true;
 		return false;

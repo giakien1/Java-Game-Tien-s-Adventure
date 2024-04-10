@@ -1,20 +1,10 @@
 package ui;
 
 import java.awt.Graphics;
-<<<<<<< HEAD
-
-import java.awt.event.KeyEvent;
-
-=======
->>>>>>> 00a50fe2fbe35caeec05a1bd73d5e3eab5d1bca3
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 import gamestates.Gamestate;
-<<<<<<< HEAD
-
-=======
->>>>>>> 00a50fe2fbe35caeec05a1bd73d5e3eab5d1bca3
 import gamestates.Playing;
 import main.Game;
 import utilz.LoadSave;
@@ -56,10 +46,7 @@ public class PauseOverlay {
 
 
 	private void createSoundButtons() {
-<<<<<<< HEAD
-=======
-		// TODO Auto-generated method stub
->>>>>>> 00a50fe2fbe35caeec05a1bd73d5e3eab5d1bca3
+
 		int soundX =(int) (450* Game.SCALE);
 		int musicY = (int) (140*Game.SCALE);
 		int sfxY = (int) (186*Game.SCALE);
@@ -68,10 +55,7 @@ public class PauseOverlay {
 	}
 	
 	private void loadBackground() {
-<<<<<<< HEAD
-=======
-		// TODO Auto-generated method stub
->>>>>>> 00a50fe2fbe35caeec05a1bd73d5e3eab5d1bca3
+
 		backgroundImg = LoadSave.GetSpriteAtlas(LoadSave.PAUSE_BACKGROUND);
 		bgW = (int)(backgroundImg.getWidth() * Game.SCALE);
 		bgH = (int)(backgroundImg.getHeight() * Game.SCALE);
@@ -182,8 +166,5 @@ public class PauseOverlay {
 	private boolean isIn(MouseEvent e, PauseButton b) {
 		return b.getBounds().contains(e.getX(),e.getY());
 	}
-<<<<<<< HEAD
 
-=======
->>>>>>> 00a50fe2fbe35caeec05a1bd73d5e3eab5d1bca3
 }
