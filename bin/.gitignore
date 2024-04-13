@@ -1,8 +1,11 @@
+/background_menu.png
+/big_clouds.png
+/level_one_data_long.png
+/playing_bg_img.png
+/small_clouds.png
+/entities/
 /gamestates/
+/levels/
 /ui/
-/pause_menu.png
 /utilz/
-/urm_buttons.png
-/volume_buttons.png
-/sound_button.png
-/input/
+/crabby_sprite.png
