@@ -24,9 +24,9 @@ public class EnemyManager {
       System.out.println("size cua: " + this.crabbies.size());
    }
 
-   public void update() {
+   public void update(int[][] lvlData) {
       for(Crabby c : crabbies) {
-    	  c.update();
+    	  c.update(lvlData);
       }
    }
 

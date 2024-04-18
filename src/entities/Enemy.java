@@ -1,6 +1,11 @@
 package entities;
 
 import static utilz.Constants.EnemyConstans.*;
+import static utilz.HelpMethods.*;
+import static utilz.Constants.Directions.*;
+import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
+
+import main.Game;
 
 public class Enemy extends Entity {
    private int aniIndex;
@@ -8,6 +13,13 @@ public class Enemy extends Entity {
    private int enemyType;
    private int aniTick;
    private int aniSpeed = 25;
+   private boolean firstUpdate = true;
+   private boolean inAir;
+   private float fallSpeed;
+   private float gravity = 0.04f * Game.SCALE;
+   private float walkSpeed = 1.0f * Game.SCALE;
+   private int walkDir = LEFT;
+   
 
    public Enemy(float x, float y, int width, int height, int enemyType) {
       super(x, y, width, height);
@@ -26,11 +38,58 @@ public class Enemy extends Entity {
       }
    }
 
-   public void update() {
+   public void update(int[][] lvlData) {
+	  updateMove(lvlData);
 	  updateAnimationTick();
+	  
    }
+   
+   public void updateMove(int[][] lvlData) {
+	   if(firstUpdate)
+		   if(!IsEntityOnFloor(hitbox, lvlData))
+			   inAir = true;
+			   firstUpdate = false;
+	   if(inAir){
+		   if(CanMoveHere(hitbox.x, hitbox.y + fallSpeed, hitbox.width, hitbox.height, lvlData)) {
+			   hitbox.y += fallSpeed;
+			   fallSpeed += gravity;
+		   }else {
+			   inAir = false;
+			   hitbox.y = GetEntityYPosUnderRoofOrAboveFloor(hitbox, aniSpeed);
+		   }
+	   }else {
+		   switch(enemyState) {
+		   case IDLE:
+			   enemyState = RUNNING;
+			   break;
+		   case RUNNING:
+			   float xSpeed = 0;
+			   
+			   if(walkDir == LEFT)
+				   xSpeed = -walkSpeed;
+			   else
+				   xSpeed = walkSpeed;
+			   if(CanMoveHere(hitbox.x + xSpeed, hitbox.y, hitbox.width, hitbox.height, lvlData)) 
+				   if(IsFloor(hitbox,xSpeed, lvlData)) {
+					   hitbox.x += xSpeed;
+					   return ;
+				   }
+				   
+			   changeWalkDir();
+				   
+			   break;
+			}
+		}
+   	}
 
-   public int getAniIndex() {
+   private void changeWalkDir() {
+	if(walkDir == LEFT)
+		walkDir = RIGHT;
+	else
+		walkDir = LEFT;
+}
+
+public int getAniIndex() {
       return aniIndex;
    }
 

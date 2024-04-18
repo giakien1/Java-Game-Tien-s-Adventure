@@ -50,7 +50,7 @@ public class HelpMethods {
 			// Falling - touching floor
 			int tileYPos = currentTile * Game.TILES_SIZE;
 			int yOffSet = (int)(Game.TILES_SIZE - hitbox.height);
-			return tileYPos + yOffSet - 1;
+			return tileYPos + yOffSet -1 ;
 		}else
 			//Jumping
 			return currentTile * Game.TILES_SIZE;	
@@ -61,5 +61,8 @@ public class HelpMethods {
 				return false;
 		return true;
 
+	}
+	public static boolean IsFloor(Rectangle2D.Float hitbox, float xSpeed, int[][] lvlData) {
+		return IsSolid(hitbox.x + xSpeed , hitbox.y + hitbox.height + 1, lvlData);
 	}
 }
