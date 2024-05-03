@@ -13,6 +13,7 @@ import entities.EnemyManager;
 import entities.Player;
 import levels.LevelManager;
 import main.Game;
+import object.ObjectManager;
 import ui.GameOverOverlay;
 import ui.LevelCompletedOverlay;
 import ui.PauseOverlay;
@@ -23,6 +24,8 @@ public class Playing extends State implements Statemethods{
 	private Player player;
 	private LevelManager levelManager;
 	private EnemyManager enemyManager;
+	private ObjectManager objectManager;
+	
 	private boolean paused =  false ;
 	private PauseOverlay pauseOverlay;
 	private GameOverOverlay gameOverOverlay;
@@ -65,6 +68,7 @@ public class Playing extends State implements Statemethods{
 	
 	private void loadStartLevel() {
 		enemyManager.loadEnemies(levelManager.getCurrentLevel());
+		objectManager.loadObjects(levelManager.getCurrentLevel());
 	}
 
 	private void calcLvlOffset() {
@@ -76,11 +80,13 @@ public class Playing extends State implements Statemethods{
 		
 		levelManager = new LevelManager(game);
 		enemyManager =  new EnemyManager(this);
+		objectManager = new ObjectManager(this);
 		
 		//Kich thuoc nhan vat
 		player = new Player(200, 200,(int) (64 * Game.SCALE),(int) (40 * Game.SCALE), this);
 		player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
 		player.setSpawn(levelManager.getCurrentLevel().getPlayerSpawn());
+		
 		//Pause, GameOver, GameCompleted
 		pauseOverlay = new PauseOverlay(this);
 		gameOverOverlay = new GameOverOverlay(this);
@@ -109,6 +115,7 @@ public class Playing extends State implements Statemethods{
 			levelCompletedOverlay.update();
 		} else if(!gameOver){
 			levelManager.update();
+			objectManager.update();
 			player.update();
 			enemyManager.update(levelManager.getCurrentLevel().getLevelData(),player);
 			checkCloseToBorder();
@@ -139,6 +146,7 @@ public class Playing extends State implements Statemethods{
 		levelManager.draw(g, xLvlOffset);
 		player.render(g, xLvlOffset);
 		enemyManager.draw(g,xLvlOffset);
+		objectManager.draw(g, xLvlOffset);
 		
 		if(paused) {
 			// Background khi Pause
@@ -266,5 +274,9 @@ public class Playing extends State implements Statemethods{
 	
 	public EnemyManager getEnemyManager() {
 		return enemyManager;
+	}
+	
+	public ObjectManager getObjectManager() {
+		return objectManager;
 	}
 }
