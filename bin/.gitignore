@@ -3,11 +3,9 @@
 /input/
 /levels/
 /main/
+/object/
 /ui/
 /utilz/
-/objects_sprites.png
-/potions_sprites.png
-/lvl/
-/trap_atlas.png
-/cannon_atlas.png
-/ball.png
+/death_screen.png
+/options_background.png
+/audio/
