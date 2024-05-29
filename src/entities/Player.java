@@ -41,8 +41,7 @@ public class Player extends Entity{
 	private int healthBarXStart = (int) (34 * Game.SCALE);
 	private int healthBarYStart = (int) (14 * Game.SCALE);
 	
-//	private int maxHealth = 100;
-//	private int currentHealth = maxHealth;
+
 	private int healthWidth = healthBarWidth;
 	
 	private int flipX = 0;
@@ -79,11 +78,22 @@ public class Player extends Entity{
 	
 	public void update() {
 		if(currentHealth <= 0) {
-			playing.setGameOver(true);
+			if(state != DEAD) {
+				state = DEAD;
+				aniTick = 0;
+				aniIndex = 0;
+				playing.setPlayerDying(true);
+			} else if(aniIndex == getSpriteAmount(DEAD) - 1 && aniTick >= ANI_SPEED - 1) {
+				playing.setGameOver(true);
+			} else 
+				updateAnimationTick();
+			
+			
 			return;
 		}
 		
 		updateHealthBar();
+		
 		updateAttackBox();
 		if(moving)
 			checkPotionTouched();
@@ -130,16 +140,11 @@ public class Player extends Entity{
 				(int) (hitbox.x - xDrawOffset) - lvlOffset + flipX,
 				(int) (hitbox.y - yDrawOffset),
 				width * flipW, height, null);
-//		drawHitbox(g, lvlOffset);
-//		drawAttackBox(g, lvlOffset);
+
 		drawUI(g);
 	}
 	
-//	private void drawAttackBox(Graphics g, int lvlOffset) {
-//		g.setColor(Color.green);
-//		g.drawRect((int) attackBox.x - lvlOffset, (int) attackBox.y, (int) attackBox.width, (int) attackBox.height);
-//		
-//	}
+
 
 	private void drawUI(Graphics g) {
 		g.drawImage(statusBarImg, statusBarX, statusBarY, statusBarWidth, statusBarHeight, null);
