@@ -68,7 +68,7 @@ public class Player extends Entity{
 		this.playing = playing;
 		this.state = IDLE;
 		this.maxHealth = 100;
-		this.currentHealth = 35;
+		this.currentHealth = 100;
 		this.walkSpeed = Game.SCALE * 1.0f;
 		loadAnimations();
 		initHitbox(20,27);
@@ -85,6 +85,7 @@ public class Player extends Entity{
 	
 	private void initAttackBox() {
 		attackBox = new Rectangle2D.Float(x, y,(int)(20 * Game.SCALE), (int) (20 * Game.SCALE));
+		resetAttackBox();
 	}
 	
 	public void update() {
@@ -111,6 +112,7 @@ public class Player extends Entity{
 		
 		
 		updateAttackBox();
+		
 		updatePos();
 		
 		if(moving) {
@@ -154,7 +156,13 @@ public class Player extends Entity{
 	}
 
 	private void updateAttackBox() {
-		if(right || (powerAttackActive && flipW == 1)) 
+		if(right && left) {
+			if(flipW == 1) {
+				attackBox.x = hitbox.x + hitbox.width + (int)(Game.SCALE * 10);
+			} else {
+				attackBox.x = hitbox.x - hitbox.width - (int)(Game.SCALE * 10);
+			}
+		} else if(right || (powerAttackActive && flipW == 1)) 
 			attackBox.x = hitbox.x + hitbox.width + (int)(Game.SCALE * 10);
 		 else if(left || (powerAttackActive && flipW == -1))
 			attackBox.x = hitbox.x - hitbox.width - (int)(Game.SCALE * 10);
@@ -182,6 +190,9 @@ public class Player extends Entity{
 				(int) (hitbox.y - yDrawOffset),
 				width * flipW, height, null);
 
+//		drawHitbox(g, lvlOffset);
+//		drawAttackBox(g, lvlOffset);
+		
 		drawUI(g);
 	}
 	
@@ -264,39 +275,38 @@ public class Player extends Entity{
 				if((!left && !right) || (right && left))
 					return;
 		
+		float xSpeed = 0;
+		
 		if(!left && !right && !inAir)
 			return;
-		
-		float xSpeed = 0;
 			
-		if(left) {
+		if(left && !right) {
 			xSpeed -= walkSpeed;
 			flipX = width;
 			flipW = -1;
 		}
 		
-		if(right) {
+		if(right && !left) {
 			flipX = 0;
 			flipW = 1;
 			xSpeed += walkSpeed;
 		}
 		
 		if(powerAttackActive) {
-			if(!left && !right) {
-				if(flipW == -1)
-					xSpeed = -walkSpeed;
-				else
-					xSpeed = walkSpeed;
+			if((!left && !right) || (left && right)) {
+					if(flipW == -1)
+						xSpeed = -walkSpeed;
+					else
+						xSpeed = walkSpeed;
 			}
-			
 			xSpeed *= 3;
 		}
 		
-		// Kiem tra khong phai tren san
-		if(!inAir){
+		// Kiem tra tren khong
+		if(!inAir)
 			if(!IsEntityOnFloor(hitbox,lvlData)) {
 				inAir = true;
-			}
+			
 		}
 		
 		if(inAir && !powerAttackActive) {
@@ -313,10 +323,10 @@ public class Player extends Entity{
 				updateXPos(xSpeed);
 				}
 			}
-		}else {
+		}else 
 			updateXPos(xSpeed);	
 		moving = true;
-		}
+		
 	}
 		
 	private void jump() {
@@ -417,15 +427,24 @@ public class Player extends Entity{
 		inAir = false;
 		attacking = false;
 		moving = false;
+		airSpeed = 0f;
 		state = IDLE;
 		currentHealth = maxHealth;
-		
+
 		hitbox.x = x;
 		hitbox.y = y;
-		
+		resetAttackBox();
 		
 		if(!IsEntityOnFloor(hitbox, lvlData))
 			inAir = true;
+	}
+		
+	private void resetAttackBox() {
+		if(flipW == 1) {
+			attackBox.x = hitbox.x + hitbox.width + (int)(Game.SCALE * 10);
+		} else {
+			attackBox.x = hitbox.x - hitbox.width - (int)(Game.SCALE * 10);
+		}
 	}
 
 	public int getTileY() {

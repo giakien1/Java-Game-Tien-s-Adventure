@@ -148,4 +148,8 @@ public class Enemy extends Entity {
 	   return active;
    }
    
+   public int getCurrentHealth() {
+	   return currentHealth;
+   }
+   
 }
