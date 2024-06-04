@@ -1,3 +1,4 @@
+/utilz/
 /entities/
 /gamestates/
 /input/
@@ -5,7 +6,4 @@
 /main/
 /object/
 /ui/
-/utilz/
-/death_screen.png
-/options_background.png
-/audio/
+/lvl/
