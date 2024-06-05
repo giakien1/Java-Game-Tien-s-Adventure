@@ -31,6 +31,7 @@ public class Level {
 	private Point playerSpawn;
 	
 	public Level(BufferedImage img) {
+		
 		this.img = img;
 		createLevelData();
 		createLvlOffsets();

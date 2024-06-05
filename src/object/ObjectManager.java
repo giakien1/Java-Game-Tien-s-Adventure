@@ -5,9 +5,6 @@ import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.text.Position;
 
 import entities.Player;
 import gamestates.Playing;
@@ -33,15 +30,6 @@ public class ObjectManager {
 		this.playing = playing;
 		loadImgs();
 		
-//		potions = new ArrayList<Potion>();
-//		potions.add(new Potion(300, 300,RED_POTION));
-//		potions.add(new Potion(300, 400,BLUE_POTION));
-//		
-//		containers = new ArrayList<GameContainer>();
-//		containers.add(new GameContainer(500,300, BARREL));
-//		containers.add(new GameContainer(600,300, BOX));
-//
-//		
 	}
 	
 	public void checkSpikesTouched(Player p) {

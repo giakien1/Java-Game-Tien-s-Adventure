@@ -2,23 +2,17 @@ package main;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
-//import java.awt.image.BufferedImage;
-//import java.io.IOException;
-//import java.io.InputStream;
 import static main.Game.GAME_HEIGHT;
 import static main.Game.GAME_WIDTH;
 
-//import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import input.KeyboardInput;
 import input.MouseInput;
 
-//import static utilz.Constants.PlayerConstants.*;
-//import static utilz.Constants.Directions.*;
-
 
 public class GamePanel extends JPanel{
+	
 	private MouseInput mouseInputs;
 	private Game game;
 
@@ -31,7 +25,6 @@ public class GamePanel extends JPanel{
 		addMouseListener(mouseInputs);
 		addMouseMotionListener(mouseInputs);
 		
-		
 	}
 
 	private void setPanelSize(){
@@ -40,8 +33,8 @@ public class GamePanel extends JPanel{
 	}
 	
 
-	public void updateGame() {
-	}
+//	public void updateGame() {
+//	}
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);

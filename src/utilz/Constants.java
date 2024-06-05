@@ -65,7 +65,7 @@ public class Constants {
 		
 	}
 	
-	public static class EnemyConstans{
+	public static class EnemyConstants{
 		public static final int CRABBY = 0;
 		public static final int IDLE = 0;
 		public static final int RUNNING = 1;
@@ -124,17 +124,17 @@ public class Constants {
 	
 	
 	public static class Enviroment{
-		public static final int BIG_CLOUD_WIDTH_DEFALUT = 448;
-		public static final int BIG_CLOUD_HEIGHT_DEFALUT = 101;
+		public static final int BIG_CLOUD_WIDTH_DEFAULT = 448;
+		public static final int BIG_CLOUD_HEIGHT_DEFAULT = 101;
 		
-		public static final int SMALL_CLOUD_WIDTH_DEFALUT = 74;
-		public static final int SMALL_CLOUD_HEIGHT_DEFALUT = 24;
+		public static final int SMALL_CLOUD_WIDTH_DEFAULT = 74;
+		public static final int SMALL_CLOUD_HEIGHT_DEFAULT = 24;
 		
-		public static final int BIG_CLOUD_WIDTH = (int)(BIG_CLOUD_WIDTH_DEFALUT * Game.SCALE);
-		public static final int BIG_CLOUD_HEIGHT = (int)(BIG_CLOUD_HEIGHT_DEFALUT * Game.SCALE);
+		public static final int BIG_CLOUD_WIDTH = (int)(BIG_CLOUD_WIDTH_DEFAULT * Game.SCALE);
+		public static final int BIG_CLOUD_HEIGHT = (int)(BIG_CLOUD_HEIGHT_DEFAULT * Game.SCALE);
 		
-		public static final int SMALL_CLOUD_WIDTH = (int)(SMALL_CLOUD_WIDTH_DEFALUT * Game.SCALE);
-		public static final int SMALL_CLOUD_HEIGHT = (int)(SMALL_CLOUD_HEIGHT_DEFALUT * Game.SCALE);
+		public static final int SMALL_CLOUD_WIDTH = (int)(SMALL_CLOUD_WIDTH_DEFAULT * Game.SCALE);
+		public static final int SMALL_CLOUD_HEIGHT = (int)(SMALL_CLOUD_HEIGHT_DEFAULT * Game.SCALE);
 
 	}
 	

@@ -1,6 +1,6 @@
 package entities;
 import static utilz.Constants.Directions.*;
-import static utilz.Constants.EnemyConstans.*;
+import static utilz.Constants.EnemyConstants.*;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -48,7 +48,6 @@ public class Crabby extends Enemy {
 			   newState(RUNNING);
 			   break;
 		   case RUNNING:
-			   // Loi Cua ko nhin thay player
 			   if (canSeePlayer(lvlData, player)) {
 					turnTowardsPlayer(player);
 					if (isPlayerCloseForAttack(player))

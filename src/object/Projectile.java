@@ -1,10 +1,8 @@
 package object;
 
 import java.awt.geom.Rectangle2D;
-import java.awt.geom.Rectangle2D.Float;
 
 import main.Game;
-
 import static utilz.Constants.Projectiles.*;
 
 public class Projectile {
@@ -16,6 +14,7 @@ public class Projectile {
 	public Projectile(int x, int y , int dir) {
 		int xOffset =(int) (-3 * Game.SCALE);
 		int yOffset =(int) (5 * Game.SCALE);
+		
 		if(dir==1) {
 			xOffset = (int) (29 * Game.SCALE);
 		}

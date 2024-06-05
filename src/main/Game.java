@@ -99,7 +99,7 @@ public class Game implements Runnable{
 	
 	@Override
 	public void run() {
-		//FPS va UPS
+		//FPS and UPS
 		double timePerFrame = 1000000000.0/FPS_SET;
 		double timePerUpdate = 1000000000.0/UPS_SET;
 		

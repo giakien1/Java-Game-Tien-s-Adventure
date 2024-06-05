@@ -1,6 +1,6 @@
 package utilz;
 
-import static utilz.Constants.EnemyConstans.CRABBY;
+import static utilz.Constants.EnemyConstants.CRABBY;
 import static utilz.Constants.ObjectConstants.*;
 
 import java.awt.Color;
@@ -122,6 +122,7 @@ public class HelpMethods {
 	
 	public static boolean IsSightClear(int[][] lvlData, Rectangle2D.Float firstHitbox,
 			Rectangle2D.Float secondHitbox, int yTile) {
+		
 		int firstXTile =(int) (firstHitbox.x / Game.TILES_SIZE);
 		int secondXTile =(int) (secondHitbox.x / Game.TILES_SIZE);
 		
@@ -147,6 +148,7 @@ public class HelpMethods {
 	}
 	
 	public static ArrayList<Crabby> GetCrabs(BufferedImage img){
+		
 		ArrayList<Crabby> list = new ArrayList<>();
 		for(int j = 0; j < img.getHeight(); j++) 
 			for(int i = 0; i < img.getWidth(); i++) {
@@ -159,6 +161,7 @@ public class HelpMethods {
 	}
 	
 	public static Point GetPlayerSpawn(BufferedImage img) {
+		
 		for(int j = 0; j < img.getHeight(); j++) 
 			for(int i = 0; i < img.getWidth(); i++) {
 				Color color = new Color(img.getRGB(i, j));
@@ -170,6 +173,7 @@ public class HelpMethods {
 	}
 	
 	public static ArrayList<Potion> GetPotions(BufferedImage img){
+		
 		ArrayList<Potion> list = new ArrayList<>();
 		for(int j = 0; j < img.getHeight(); j++) 
 			for(int i = 0; i < img.getWidth(); i++) {
@@ -182,6 +186,7 @@ public class HelpMethods {
 	}
 	
 	public static ArrayList<GameContainer> GetContainers(BufferedImage img){
+		
 		ArrayList<GameContainer> list = new ArrayList<>();
 		for(int j = 0; j < img.getHeight(); j++) 
 			for(int i = 0; i < img.getWidth(); i++) {
@@ -194,6 +199,7 @@ public class HelpMethods {
 	}
 
 	public static ArrayList<Spike> GetSpikes(BufferedImage img) {
+		
 		ArrayList<Spike> list = new ArrayList<>();
 		for(int j = 0; j < img.getHeight(); j++) 
 			for(int i = 0; i < img.getWidth(); i++) {
@@ -206,6 +212,7 @@ public class HelpMethods {
 	}	
 	
 	public static ArrayList<Cannon> GetCannons(BufferedImage img) {
+		
 		ArrayList<Cannon> list = new ArrayList<>();
 		for(int j = 0; j < img.getHeight(); j++) 
 			for(int i = 0; i < img.getWidth(); i++) {

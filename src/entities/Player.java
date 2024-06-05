@@ -190,6 +190,7 @@ public class Player extends Entity{
 				(int) (hitbox.y - yDrawOffset),
 				width * flipW, height, null);
 
+//		Ve Hitbox
 //		drawHitbox(g, lvlOffset);
 //		drawAttackBox(g, lvlOffset);
 		
@@ -302,7 +303,7 @@ public class Player extends Entity{
 			xSpeed *= 3;
 		}
 		
-		// Kiem tra tren khong
+		// Kiem tra dang nhay
 		if(!inAir)
 			if(!IsEntityOnFloor(hitbox,lvlData)) {
 				inAir = true;

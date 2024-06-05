@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import utilz.LoadSave;
-import static utilz.Constants.EnemyConstans.*;
+import static utilz.Constants.EnemyConstants.*;
 public class EnemyManager {
 	
    private Playing playing;

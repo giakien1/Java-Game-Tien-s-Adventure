@@ -2,7 +2,7 @@ package entities;
 
 import java.awt.Color;
 import java.awt.Graphics;
-//import java.awt.Rectangle;
+import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
 import main.Game;
@@ -37,7 +37,7 @@ public abstract class Entity {
 	}
 	
 	protected void drawHitbox(Graphics g, int xLvlOffset) {
-		//for debugging the hitbox
+		//Debugging Hitbox
 		g.setColor(Color.PINK);
 		g.drawRect( (int)hitbox.x -  xLvlOffset, (int)hitbox.y, (int)hitbox.width, (int)hitbox.height);
 	}
@@ -45,11 +45,6 @@ public abstract class Entity {
 	protected void initHitbox(int width, int height) {
 		hitbox = new Rectangle2D.Float(x, y, (int)(width * Game.SCALE),(int)(height * Game.SCALE));
 	}
-	
-//	public void updateHitbox() {
-//		hitbox.x = (int)x;
-//		hitbox.y = (int)y;
-//	}
 	
 	public Rectangle2D.Float getHitbox() {
 		return hitbox;

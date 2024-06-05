@@ -213,6 +213,7 @@ public class Playing extends State implements Statemethods{
 	}
 	@Override
 	public void mousePressed(MouseEvent e) {
+		
 		if(!gameOver) {
 			if(paused)
 				pauseOverlay.mousePressed(e);
@@ -235,6 +236,7 @@ public class Playing extends State implements Statemethods{
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
+		
 		if(!gameOver) {
 			if(paused)
 				pauseOverlay.mouseMoved(e);
@@ -260,6 +262,7 @@ public class Playing extends State implements Statemethods{
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		
 		if(gameOver)
 			gameOverOverlay.keyPressed(e);
 		else
@@ -282,6 +285,7 @@ public class Playing extends State implements Statemethods{
 
 	@Override
 	public void keyReleased(KeyEvent e) {
+		
 		if(!gameOver)
 			switch(e.getKeyCode()) {
 	
@@ -311,7 +315,6 @@ public class Playing extends State implements Statemethods{
 
 	public void setPlayerDying(boolean b) {
 		this.playerDying = playerDying;
-		
 	}
 
 }
